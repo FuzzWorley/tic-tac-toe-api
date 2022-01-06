@@ -32,3 +32,9 @@ Or you may run your own local server if you are keen on setting up a Rails / Pos
 * Postgres database
 * Puma server
 * Rspec / Factorybot testing
+
+## Some ideas for improvement
+* There is currently an unused constant in the Game model.
+* I was planning to raise an error if the player value is not in that constant. 
+* I was planning to raise an error if the player value in the request was not opposite of the last player to go.
+* I have decided I have spent enough time on this project and will leave that, among some other things, to future improvement.
