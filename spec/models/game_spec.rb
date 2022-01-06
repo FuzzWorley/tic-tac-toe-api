@@ -136,7 +136,7 @@ RSpec.describe Game, type: :model do
 
       it 'updates raises GameOverError' do
         expect { subject }.to raise_error(
-          GameOverError, "Game over - winner: #{game.winner} Can not be updated."
+          GameOverError, "Game already over - winner: #{game.winner} Can not be updated."
         )
       end
     end

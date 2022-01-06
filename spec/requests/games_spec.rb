@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Games API', type: :request do
   let!(:games) { create_list(:game, 5) }
+  let(:game) { games.first }
   let(:id) { games.first.id }
 
   describe 'GET /games' do
@@ -83,6 +84,46 @@ RSpec.describe 'Games API', type: :request do
 
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
+      end
+    end
+
+    context 'when the game is already won' do
+      before do
+        game.update!(
+          tiles: [
+            ['x', 'x', nil],
+            ['o', 'o', 'o'],
+            [nil, nil, nil]
+          ],
+          moves: 5,
+          winner: 'o'
+        )
+        put "/api/v1/games/#{id}", params: valid_attributes
+      end
+
+      it 'returns status code 400 bad request' do
+        expect(response).to have_http_status(400)
+      end
+    end
+
+    context 'when a tile is already played' do
+      let(:invalid_attributes) { { row: 0, column: 0, player: 'o' } }
+
+      before do
+        game.update!(
+          tiles: [
+            ['x', nil, nil],
+            [nil, nil, nil],
+            [nil, nil, nil]
+          ],
+          moves: 1,
+          winner: nil
+        )
+        put "/api/v1/games/#{id}", params: invalid_attributes
+      end
+
+      it 'returns status code 400 bad request' do
+        expect(response).to have_http_status(400)
       end
     end
   end
