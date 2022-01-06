@@ -51,5 +51,3 @@ class Game < ApplicationRecord
     self.save!
   end
 end
-
-# every other move, opposite player
