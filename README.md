@@ -19,7 +19,7 @@ Or you may run your own local server if you are keen on setting up a Rails / Pos
   * POST `/api/v1/games`
 * Update a game, or "move"
   * PUT `/api/v1/games/:game_id`
-    * sample params: `row=1&column=2&player=x`
+    * sample params: `{ row: 1, column: 1, player: x }`
     * these params would place an "x" in the middle tile, as the row and column indices start at 0
 * Get all games
     * GET `/api/v1/games`
