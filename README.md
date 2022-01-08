@@ -25,6 +25,8 @@ Or you may run your own local server if you are keen on setting up a Rails / Pos
     * GET `/api/v1/games`
 * Get a specific game
     * GET `/api/v1/games/:game_id`
+* Delete a game
+    * DELETE `/api/v1/games/:game_id`
 
 ## Technical details
 * Ruby version "3.0.2"
